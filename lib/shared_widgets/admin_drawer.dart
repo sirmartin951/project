@@ -1,7 +1,10 @@
 import "package:flutter/material.dart";
 import 'package:project/models/location_model.dart';
 import '../authentication/auth_screen.dart';
+import '../feeback_from_users.dart';
 import '../global/global.dart';
+import '../screens/admin_home.dart';
+import '../screens/home.dart';
 import '../screens/locations.dart';
 import '../search_screen.dart';
 
@@ -16,6 +19,7 @@ class AdminDrawer extends StatefulWidget {
 
 class _AdminDrawerState extends State<AdminDrawer> {
   final String? photoUrl = sharedPreferences!.getString("photoUrl");
+  final String? adminKey = sharedPreferences!.getString("adminKey");
 
   final String? name = sharedPreferences!.getString("name");
 
@@ -70,7 +74,15 @@ class _AdminDrawerState extends State<AdminDrawer> {
                     "Home",
                     style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                     if (adminKey !="" && adminKey=="ADMIN@NSTU104Y") {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (c) => const AdminHome()));
+                    } else {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (c) => const Home()));
+                    }
+                  },
                 ),
                 ListTile(
                   leading: const Icon(Icons.search,
@@ -82,6 +94,30 @@ class _AdminDrawerState extends State<AdminDrawer> {
                   onTap: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (c) => SearchScreen()));
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.location_city,
+                      color: Color.fromARGB(255, 255, 255, 255)),
+                  title: const Text(
+                    "All Places",
+                    style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+                  ),
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (c) => LocationsDesign()));
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.feedback,
+                      color: Color.fromARGB(255, 255, 255, 255)),
+                  title: const Text(
+                    "Feedback From Users",
+                    style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+                  ),
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (c) => FeedBackFromUsers()));
                   },
                 ),
                 ListTile(
@@ -100,21 +136,15 @@ class _AdminDrawerState extends State<AdminDrawer> {
                     });
                   },
                 ),
-                ListTile(
-                  leading: const Icon(Icons.location_city,
-                      color: Color.fromARGB(255, 255, 255, 255)),
-                  title: const Text(
-                    "All Places",
-                    style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-                  ),
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (c) => LocationsDesign()));
-                  },
-                ),
               ]),
             )
           ],
         ));
   }
 }
+
+
+
+
+//Api
+//AIzaSyDO70UvC0LZQAimmtXd2CazRLwCyTSRC3o

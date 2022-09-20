@@ -48,6 +48,8 @@ dependencies:
   progress_bars: ^0.0.3
   flutter_staggered_grid_view: ^0.6.1
   google_map_polyline_new: ^0.3.0+2
+  permission: ^0.1.7
+  flutter_polyline_points: ^1.0.0
 
 dev_dependencies:
   # The "flutter_lints" package below contains a set of recommended lints to

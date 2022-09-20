@@ -1,13 +1,16 @@
 import "package:flutter/material.dart";
 import '../authentication/auth_screen.dart';
 import '../global/global.dart';
+import '../screens/admin_home.dart';
+import '../screens/home.dart';
 import '../screens/locations.dart';
+import 'package:project/feedback.dart';
 import '../search_screen.dart';
 
 class UsersDrawer extends StatelessWidget {
   final String? photoUrl = sharedPreferences!.getString("photoUrl");
   final String? name = sharedPreferences!.getString("name");
-
+  final String? adminKey = sharedPreferences!.getString("adminKey");
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -59,7 +62,26 @@ class UsersDrawer extends StatelessWidget {
                     "Home",
                     style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (c) => const Home()));
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.feedback,
+                      color: Color.fromARGB(255, 255, 255, 255)),
+                  title: const Text(
+                    "Feedback",
+                    style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (c) => FeedBack(),
+                      ),
+                    );
+                  },
                 ),
                 ListTile(
                   leading: const Icon(Icons.search,
